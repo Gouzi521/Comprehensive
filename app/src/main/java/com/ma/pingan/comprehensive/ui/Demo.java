@@ -5,4 +5,5 @@ package com.ma.pingan.comprehensive.ui;
  */
 
 public class Demo {
+    private String name;
 }
