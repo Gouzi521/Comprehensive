@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp">
+    </android.support.v4.view.ViewPager>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#abc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="#e7f7f4f4"
+        android:layout_height="wrap_content">
+
+        <com.ma.pingan.comprehensive.widget.ShadeTabView
+            android:id="@+id/stv_weiXin"
+            app:textSize="4sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:normalIcon="@drawable/tab_weixin"
+            app:selectIcon="@drawable/tab_weixin_select"
+            app:tab="首页"/>
+
+        <com.ma.pingan.comprehensive.widget.ShadeTabView
+            android:id="@+id/stv_address_book"
+            app:textSize="4sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:normalIcon="@drawable/tab_address_list"
+            app:selectIcon="@drawable/tab_address_list_select"
+            app:tab="查询"/>
+
+
+        <com.ma.pingan.comprehensive.widget.ShadeTabView
+            android:id="@+id/stv_discover"
+            app:textSize="4sp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:normalIcon="@drawable/tab_discover"
+            app:selectIcon="@drawable/tab_discover_select"
+            app:tab="充值"/>
+        <com.ma.pingan.comprehensive.widget.ShadeTabView
+            android:id="@+id/stv_me"
+            android:layout_width="0dp"
+            app:textSize="4sp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            app:normalIcon="@drawable/tab_me"
+            app:selectIcon="@drawable/tab_me_select"
+            app:tab="我"/>
+    </LinearLayout>
+</LinearLayout>
