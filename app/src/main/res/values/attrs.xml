@@ -11,4 +11,30 @@
         <attr name="selectTextColor" format="color" />
     </declare-styleable>
 
+    <declare-styleable name="LoadingView">
+        <attr name="loadding_color" format="color" />
+        <attr name="ring_style" format="enum">
+            <enum name="square" value="0" />
+            <enum name="round" value="1" />
+        </attr>
+        <attr name="progress_style" format="enum">
+            <enum name="material" value="0" />
+            <enum name="linear" value="1" />
+        </attr>
+
+        <attr name="ring_width" format="dimension" />
+        <attr name="ring_radius" format="dimension" />
+    </declare-styleable>
+
+    <!-- RVPIndicator -->
+    <declare-styleable name="RVPIndicator">
+        <attr name="item_count" />
+        <attr name="text_color_normal" />
+        <attr name="text_color_hightlight" />
+        <attr name="text_size" />
+        <attr name="indicator_color" />
+        <attr name="indicator_src" />
+        <attr name="indicator_style" />
+    </declare-styleable>
+
 </resources>
