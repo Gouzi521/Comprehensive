@@ -8,6 +8,8 @@
     android:orientation="vertical"
     tools:context="com.ma.pingan.comprehensive.ui.activity.RankingActivity">
 
+    <include layout="@layout/common_toolbar" />
+
     <com.ma.pingan.comprehensive.widget.RVPIndicator
         android:id="@+id/indicatorSub"
         android:layout_width="match_parent"
@@ -17,7 +19,7 @@
         rvp:indicator_color="@color/common_bg"
         rvp:indicator_style="triangle"
         rvp:item_count="4"
-        rvp:text_color_hightlight="@color/white"
+        rvp:text_color_hightlight="@color/White"
         rvp:text_color_normal="@color/light_gray"
         ></com.ma.pingan.comprehensive.widget.RVPIndicator>
 

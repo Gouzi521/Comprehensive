@@ -1,6 +1,8 @@
 package com.ma.pingan.comprehensive.dagger.component;
 
 import com.ma.pingan.comprehensive.MainActivity;
+import com.ma.pingan.comprehensive.ui.activity.RankingActivity;
+import com.ma.pingan.comprehensive.ui.activity.TopCategoryListActivity;
 
 import dagger.Component;
 
@@ -12,4 +14,6 @@ import dagger.Component;
 public interface ActivityComponent {
 
     MainActivity inject(MainActivity activity);
+    RankingActivity inject(RankingActivity activity);
+    TopCategoryListActivity inject(TopCategoryListActivity activity);
 }
