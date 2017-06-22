@@ -1,9 +1,12 @@
 package com.ma.pingan.comprehensive.api;
 
+import com.ma.pingan.comprehensive.bean.BookDetail;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
 import com.ma.pingan.comprehensive.bean.CategoryList;
 import com.ma.pingan.comprehensive.bean.CategoryListLv2;
+import com.ma.pingan.comprehensive.bean.HotReview;
 import com.ma.pingan.comprehensive.bean.Ranking;
+import com.ma.pingan.comprehensive.bean.RecommendBookList;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -61,4 +64,18 @@ public interface ApiService {
     @GET("/book/by-categories")
     Observable<BooksByCats> getBooksByCats(@Query("gender") String gender, @Query("type") String type, @Query("major") String major, @Query("minor") String minor, @Query("start") int start, @Query("limit") int limit);
 
+
+    /**
+     * 热门评论
+     *
+     * @param book
+     * @return
+     */
+    @GET("/post/review/best-by-book")
+    Observable<HotReview> getHotReview(@Query("book") String book);
+    @GET("/book-list/{bookId}/recommend")
+    Observable<RecommendBookList> getRecommendBookList(@Path("bookId") String bookId, @Query("limit") String limit);
+
+    @GET("/book/{bookId}")
+    Observable<BookDetail> getBookDetail(@Path("bookId") String bookId);
 }

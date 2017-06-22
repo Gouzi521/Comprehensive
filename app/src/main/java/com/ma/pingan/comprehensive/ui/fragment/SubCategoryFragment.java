@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TabHost;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.ma.pingan.comprehensive.R;
 import com.ma.pingan.comprehensive.api.Api;
 import com.ma.pingan.comprehensive.api.ApiService;
 import com.ma.pingan.comprehensive.base.Constant;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
+import com.ma.pingan.comprehensive.ui.activity.BookDetailActivity;
 import com.ma.pingan.comprehensive.ui.adapter.SubCategoryAdapter;
 
 import java.util.ArrayList;
@@ -95,23 +97,27 @@ public class SubCategoryFragment extends Fragment {
         minor = getArguments().getString(BUNDLE_MINOR);
         type = getArguments().getString(BUNDLE_TYPE);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constant.API_BASE_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        ApiService apiService = retrofit.create(ApiService.class);
-        apiService.getBooksByCats(gender, type, major, "东方玄幻", start, limit)
+        Api api=new Api();
+
+        api.getBooksByCats(gender, type, major, minor, start, limit)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BooksByCats>() {
                     @Override
-                    public void accept(@NonNull BooksByCats booksByCats) throws Exception {
-                        Log.e(TAG,booksByCats.books.get(0).author);
+                    public void accept(@NonNull final BooksByCats booksByCats) throws Exception {
+                      //  Log.e(TAG,booksByCats.books.get(0).author);
                         adapter=new SubCategoryAdapter(R.layout.item_sub_category_list,booksByCats.books);
                         recyclerview.setAdapter(adapter);
                         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+                        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+                                BookDetailActivity.startActivity(getContext(),booksByCats.books.get(position)._id);
+                            }
+                        });
                     }
                 });
 

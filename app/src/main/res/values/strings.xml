@@ -5,7 +5,7 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
-
+    <string name="add_tag">Add Tag</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="category_book_msg"><![CDATA[%1$d人在追 |&#160; %2$s%%读者留存]]></string>
@@ -13,4 +13,13 @@
     <string name="male">男生</string>
     <string name="category">分类</string>
     <string name="category_book_count">%1$d本</string>
+    <string name="book_detail_user_lv">&#160;lv.%1$d</string>
+    <string name="book_detail_join_collection">追更新</string>
+    <string name="book_detail_recommend_book_list">推荐书单</string>
+    <string name="book_detail_post_count">共有%1$d个帖子</string>
+    <string name="book_detail_community">%1$s的社区</string>
+    <string name="book_detail_hot_reviews">热门书评</string>
+    <string name="book_detail">书籍详情</string>
+    <string name="book_detail_recommend_book_list_book_count">共%1$d本书 |&#160;</string>
+    <string name="book_detail_recommend_book_list_collector_count">%1$d人收藏</string>
 </resources>

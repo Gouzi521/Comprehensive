@@ -2,10 +2,13 @@ package com.ma.pingan.comprehensive.api;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.ma.pingan.comprehensive.base.Constant;
+import com.ma.pingan.comprehensive.bean.BookDetail;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
 import com.ma.pingan.comprehensive.bean.CategoryList;
 import com.ma.pingan.comprehensive.bean.CategoryListLv2;
+import com.ma.pingan.comprehensive.bean.HotReview;
 import com.ma.pingan.comprehensive.bean.Ranking;
+import com.ma.pingan.comprehensive.bean.RecommendBookList;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -24,12 +27,12 @@ public class Api {
 
     private static ApiService service;
 
-    public Api(OkHttpClient okHttpClient){
+    public Api(){
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl(Constant.API_BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient)
+              //  .client(okHttpClient)
                 .build();
 
         service=retrofit.create(ApiService.class);
@@ -37,7 +40,7 @@ public class Api {
 
     public static Api getInstance(OkHttpClient okHttpClient){
         if (instance==null)
-            instance=new Api(okHttpClient);
+            instance=new Api();
         return instance;
     }
 
@@ -45,14 +48,26 @@ public class Api {
         return service.getRanking(rankingId);
     }
 
-    public static Observable<BooksByCats> getBooksByCats(String gender, String type, String major, String minor, int start, @Query("limit") int limit) {
+    public  Observable<BooksByCats> getBooksByCats(String gender, String type, String major, String minor, int start, @Query("limit") int limit) {
         return service.getBooksByCats(gender, type, major, minor, start, limit);
     }
 
     public  Observable<CategoryList> getCategoryList() {
         return service.getCategoryList();
     }
-    public static Observable<CategoryListLv2> getCategoryListLv2() {
+    public  Observable<CategoryListLv2> getCategoryListLv2() {
         return service.getCategoryListLv2();
+    }
+
+    public Observable<RecommendBookList> getRecommendBookList(String bookId, String limit) {
+        return service.getRecommendBookList(bookId, limit);
+    }
+
+    public Observable<HotReview> getHotReview(String book) {
+        return service.getHotReview(book);
+    }
+
+    public Observable<BookDetail> getBookDetail(String bookId) {
+        return service.getBookDetail(bookId);
     }
 }

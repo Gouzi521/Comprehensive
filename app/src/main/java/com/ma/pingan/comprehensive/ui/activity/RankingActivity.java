@@ -7,6 +7,7 @@ import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
@@ -41,15 +42,17 @@ public class RankingActivity extends BaseActivity {
 
     @BindView(R.id.indicatorSub)
     RVPIndicator mIndicator;
-    @BindView(R.id.viewpagerSub)
+    @BindView(R.id.viewpagerSubRank)
     ViewPager mViewPager;
+
     private String[] types = new String[]{Constant.CateType.NEW, Constant.CateType.HOT, Constant.CateType.REPUTATION, Constant.CateType.OVER};
     public static final String INTENT_CATE_NAME = "name";
     public static final String INTENT_GENDER = "gender";
     private String cate = "";
     private String gender = "";
-    private String currentMinor = "";
+
     private MenuItem menuItem = null;
+    private List<String> mMinors = new ArrayList<>();
     private List<Fragment> mTabContents;
     private List<String> mDatas;
     private FragmentPagerAdapter mAdapter;
@@ -82,7 +85,7 @@ public class RankingActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-
+        mMinors.clear();
         mDatas=new ArrayList<>();
         mDatas.add("新书");
         mDatas.add("热门");
@@ -108,15 +111,30 @@ public class RankingActivity extends BaseActivity {
             }
         };
 
-//        Api.getCategoryListLv2()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<CategoryListLv2>() {
-//                    @Override
-//                    public void accept(@NonNull CategoryListLv2 categoryListLv2) throws Exception {
-//
-//                    }
-//                });
+        Api api=new Api();
+        api.getCategoryListLv2()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<CategoryListLv2>() {
+                    @Override
+                    public void accept(@NonNull CategoryListLv2 data) throws Exception {
+                        mMinors.add(cate);
+                        if (gender.equals(Constant.Gender.MALE)){
+                            for (CategoryListLv2.MaleBean bean:data.male){
+                                if (cate.equals(bean.major)){
+                                    mMinors.addAll(bean.mins);
+                                }
+                            }
+                        }else {
+                            for (CategoryListLv2.MaleBean bean:data.female){
+                                if (cate.equals(bean.major)){
+                                    mMinors.addAll(bean.mins);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                });
     }
 
     @Override
