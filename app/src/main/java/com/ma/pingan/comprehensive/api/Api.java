@@ -3,9 +3,11 @@ package com.ma.pingan.comprehensive.api;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.ma.pingan.comprehensive.base.Constant;
 import com.ma.pingan.comprehensive.bean.BookDetail;
+import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
 import com.ma.pingan.comprehensive.bean.CategoryList;
 import com.ma.pingan.comprehensive.bean.CategoryListLv2;
+import com.ma.pingan.comprehensive.bean.ChapterRead;
 import com.ma.pingan.comprehensive.bean.HotReview;
 import com.ma.pingan.comprehensive.bean.Ranking;
 import com.ma.pingan.comprehensive.bean.RecommendBookList;
@@ -69,5 +71,13 @@ public class Api {
 
     public Observable<BookDetail> getBookDetail(String bookId) {
         return service.getBookDetail(bookId);
+    }
+
+    public Observable<BookMixAToc> getBookMixAToc(String bookId, String view) {
+        return service.getBookMixAToc(bookId, view);
+    }
+
+    public synchronized Observable<ChapterRead> getChapterRead(String url) {
+        return service.getChapterRead(url);
     }
 }

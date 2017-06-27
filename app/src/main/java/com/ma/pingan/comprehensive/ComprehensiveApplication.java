@@ -1,12 +1,15 @@
 package com.ma.pingan.comprehensive;
 
 import android.app.Application;
+import android.content.Context;
+
 
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
 import com.ma.pingan.comprehensive.dagger.component.DaggerAppComponent;
 import com.ma.pingan.comprehensive.dagger.module.ApiModule;
 import com.ma.pingan.comprehensive.dagger.module.AppModule;
 import com.ma.pingan.comprehensive.utils.AppUtils;
+import com.ma.pingan.comprehensive.utils.SharedPreferencesUtil;
 
 /**
  * Created by mapingan
@@ -25,6 +28,7 @@ public class ComprehensiveApplication extends Application{
         mInstance=this;
         initCompoent();
         AppUtils.init(this);
+        initPrefs();
     }
 
 
@@ -42,5 +46,12 @@ public class ComprehensiveApplication extends Application{
 
     public AppComponent getAppComponent() {
         return appComponent;
+    }
+
+    /**
+     * 初始化SharedPreference
+     */
+    protected void initPrefs() {
+        SharedPreferencesUtil.init(getApplicationContext(), getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
     }
 }

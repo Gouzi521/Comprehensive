@@ -28,14 +28,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class TopCategoryListActivity extends BaseActivity implements TopCategoryListContract.View{
 
@@ -96,44 +89,6 @@ public class TopCategoryListActivity extends BaseActivity implements TopCategory
 
     @Override
     protected void initData() {
-
-//
-//        api=new Api();
-//        api.getCategoryList()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<CategoryList>() {
-//                    @Override
-//                    public void accept(@NonNull final CategoryList categoryList) throws Exception {
-//                        mMaleCategoryList.addAll(categoryList.male);
-//                        mFemaleCategoryList.addAll(categoryList.female);
-//                        maleAdapter = new TopCategoryListAdapter(R.layout.item_top_category_list, mMaleCategoryList);
-//                        rvMaleCategory.setAdapter(maleAdapter);
-//                        femaleAdapter = new TopCategoryListAdapter(R.layout.item_top_category_list, mFemaleCategoryList);
-//                        rvFemaleCategory.setAdapter(femaleAdapter);
-//                        rvMaleCategory.setLayoutManager(new GridLayoutManager(TopCategoryListActivity.this, 4));
-//                        rvFemaleCategory.setLayoutManager(new GridLayoutManager(TopCategoryListActivity.this, 4));
-//
-//                        maleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//                            @Override
-//                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                                gender = Constant.Gender.MALE;
-//                                RankingActivity.startActivity(TopCategoryListActivity.this, categoryList.male.get(position).name, gender);
-//                                Log.e(TAG,categoryList.male.get(0).name+gender);
-//                            }
-//                        });
-//                        femaleAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-//                            @Override
-//                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-//                                gender = Constant.Gender.FEMALE;
-//                                RankingActivity.startActivity(TopCategoryListActivity.this, categoryList.male.get(position).name, gender);
-//                                Log.e(TAG,categoryList.male.get(0).name+gender);
-//                            }
-//                        });
-//
-//                    }
-//                });
-
 
     }
 

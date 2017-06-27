@@ -3,6 +3,9 @@ package com.ma.pingan.comprehensive.base;
 import android.graphics.Color;
 import android.support.annotation.StringDef;
 
+import com.ma.pingan.comprehensive.utils.AppUtils;
+import com.ma.pingan.comprehensive.utils.FileUtils;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -49,4 +52,12 @@ public class Constant {
         String OVER = "over";
     }
 
+    public static String PATH_DATA = FileUtils.createRootPath(AppUtils.getAppContext()) + "/cache";
+    public static String PATH_TXT = PATH_DATA + "/book/";
+    public static final String SUFFIX_ZIP = ".zip";
+    public static String PATH_EPUB = PATH_DATA + "/epub";
+
+    public static final String ISNIGHT = "isNight";
+    public static final String FLIP_STYLE = "flipStyle";
+    public static String BASE_PATH = AppUtils.getAppContext().getCacheDir().getPath();
 }

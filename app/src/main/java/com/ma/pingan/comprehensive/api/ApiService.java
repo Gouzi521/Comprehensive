@@ -1,9 +1,11 @@
 package com.ma.pingan.comprehensive.api;
 
 import com.ma.pingan.comprehensive.bean.BookDetail;
+import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
 import com.ma.pingan.comprehensive.bean.CategoryList;
 import com.ma.pingan.comprehensive.bean.CategoryListLv2;
+import com.ma.pingan.comprehensive.bean.ChapterRead;
 import com.ma.pingan.comprehensive.bean.HotReview;
 import com.ma.pingan.comprehensive.bean.Ranking;
 import com.ma.pingan.comprehensive.bean.RecommendBookList;
@@ -78,4 +80,10 @@ public interface ApiService {
 
     @GET("/book/{bookId}")
     Observable<BookDetail> getBookDetail(@Path("bookId") String bookId);
+
+    @GET("/mix-atoc/{bookId}")
+    Observable<BookMixAToc> getBookMixAToc(@Path("bookId") String bookId, @Query("view") String view);
+
+    @GET("http://chapter2.zhuishushenqi.com/chapter/{url}")
+    Observable<ChapterRead> getChapterRead(@Path("url") String url);
 }

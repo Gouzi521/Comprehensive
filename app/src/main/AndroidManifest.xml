@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".excludedemo.BottomSheetActivity" />
-        <activity android:name=".ui.activity.RankingActivity"></activity>
+        <activity android:name=".ui.activity.RankingActivity" />
         <activity android:name=".ui.activity.TopCategoryListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.BookDetailActivity"></activity>
+        <activity android:name=".ui.activity.BookDetailActivity" />
     </application>
 
 </manifest>
