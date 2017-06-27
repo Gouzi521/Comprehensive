@@ -19,7 +19,6 @@ import com.ma.pingan.comprehensive.bean.CategoryListLv2;
 import com.ma.pingan.comprehensive.bean.Ranking;
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
 import com.ma.pingan.comprehensive.dagger.component.DaggerActivityComponent;
-import com.ma.pingan.comprehensive.manger.EventManager;
 import com.ma.pingan.comprehensive.ui.fragment.SubCategoryFragment;
 import com.ma.pingan.comprehensive.widget.RVPIndicator;
 

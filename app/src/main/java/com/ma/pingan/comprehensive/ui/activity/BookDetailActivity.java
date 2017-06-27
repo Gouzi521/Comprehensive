@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -82,8 +83,9 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
     TextView mTvRecommendBookList;
     @BindView(R.id.rvRecommendBoookList)
     RecyclerView mRvRecommendBoookList;
-    @BindView(R.id.btnRead)
-    DrawableCenterButton btnRead;
+    @BindView(R.id.common_toolbar)
+    Toolbar commonToolbar;
+
 
     private String bookId;
     private HotReviewAdapter mHotReviewAdapter;
@@ -261,9 +263,17 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
     }
 
 
-    @OnClick(R.id.btnRead)
+
+    @OnClick(R.id.tvBookListAuthor)
     public void onViewClicked() {
-        if (recommendBooks == null) return;
-        ReadActivity.startActivity(this, recommendBooks);
+        String author = mTvAuthor.getText().toString().replaceAll(" ", "");
+        SearchByAuthorActivity.startActivity(this, author);
     }
+
+
+//    @OnClick(R.id.btnRead)
+//    public void onViewClicked() {
+//        if (recommendBooks == null) return;
+//        ReadActivity.startActivity(this, recommendBooks);
+//    }
 }

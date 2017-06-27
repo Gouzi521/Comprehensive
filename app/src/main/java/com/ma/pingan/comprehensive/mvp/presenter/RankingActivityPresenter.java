@@ -12,12 +12,7 @@ import javax.inject.Inject;
 
 public class RankingActivityPresenter implements RankingContract.Persenter<RankingContract.View>{
 
-    private Api api;
 
-    @Inject
-    public RankingActivityPresenter(Api api) {
-        this.api = api;
-    }
 
     @Override
     public void attachView(RankingContract.View view) {

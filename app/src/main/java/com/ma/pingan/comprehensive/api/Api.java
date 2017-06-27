@@ -5,6 +5,7 @@ import com.ma.pingan.comprehensive.base.Constant;
 import com.ma.pingan.comprehensive.bean.BookDetail;
 import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
+import com.ma.pingan.comprehensive.bean.BooksByTag;
 import com.ma.pingan.comprehensive.bean.CategoryList;
 import com.ma.pingan.comprehensive.bean.CategoryListLv2;
 import com.ma.pingan.comprehensive.bean.ChapterRead;
@@ -79,5 +80,9 @@ public class Api {
 
     public synchronized Observable<ChapterRead> getChapterRead(String url) {
         return service.getChapterRead(url);
+    }
+
+    public Observable<BooksByTag> searchBooksByAuthor(String author) {
+        return service.searchBooksByAuthor(author);
     }
 }

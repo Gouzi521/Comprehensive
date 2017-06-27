@@ -3,6 +3,7 @@ package com.ma.pingan.comprehensive.api;
 import com.ma.pingan.comprehensive.bean.BookDetail;
 import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
+import com.ma.pingan.comprehensive.bean.BooksByTag;
 import com.ma.pingan.comprehensive.bean.CategoryList;
 import com.ma.pingan.comprehensive.bean.CategoryListLv2;
 import com.ma.pingan.comprehensive.bean.ChapterRead;
@@ -86,4 +87,13 @@ public interface ApiService {
 
     @GET("http://chapter2.zhuishushenqi.com/chapter/{url}")
     Observable<ChapterRead> getChapterRead(@Path("url") String url);
+
+    /**
+     * 通过作者查询书名
+     *
+     * @param author
+     * @return
+     */
+    @GET("/book/accurate-search")
+    Observable<BooksByTag> searchBooksByAuthor(@Query("author") String author);
 }
