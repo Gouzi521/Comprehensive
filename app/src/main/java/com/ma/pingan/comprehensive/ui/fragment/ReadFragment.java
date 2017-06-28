@@ -16,6 +16,7 @@ import com.ma.pingan.comprehensive.R;
 import com.ma.pingan.comprehensive.base.BaseFragment;
 import com.ma.pingan.comprehensive.bean.FindBean;
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
+import com.ma.pingan.comprehensive.ui.activity.SubjectBookListActivity;
 import com.ma.pingan.comprehensive.ui.activity.TopCategoryListActivity;
 import com.ma.pingan.comprehensive.ui.adapter.FindAdapter;
 
@@ -83,8 +84,8 @@ public class ReadFragment extends BaseFragment implements BaseQuickAdapter.OnIte
                 startActivity(new Intent(activity, TopCategoryListActivity.class));
                 break;
             case 1:
-                //SubjectBookListActivity.startActivity(activity);
-                startActivity(new Intent(activity, TopCategoryListActivity.class));
+                SubjectBookListActivity.startActivity(activity);
+               // startActivity(new Intent(activity, TopCategoryListActivity.class));
                 break;
             case 2:
                 startActivity(new Intent(activity, TopCategoryListActivity.class));

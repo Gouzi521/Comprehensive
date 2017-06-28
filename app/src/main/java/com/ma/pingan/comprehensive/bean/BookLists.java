@@ -51,5 +51,19 @@ public class BookLists extends Base {
         public int collectorCount;
         public String cover;
         public int bookCount;
+
+        @Override
+        public String toString() {
+            return "BookListsBean{" +
+                    "_id='" + _id + '\'' +
+                    ", title='" + title + '\'' +
+                    ", author='" + author + '\'' +
+                    ", desc='" + desc + '\'' +
+                    ", gender='" + gender + '\'' +
+                    ", collectorCount=" + collectorCount +
+                    ", cover='" + cover + '\'' +
+                    ", bookCount=" + bookCount +
+                    '}';
+        }
     }
 }

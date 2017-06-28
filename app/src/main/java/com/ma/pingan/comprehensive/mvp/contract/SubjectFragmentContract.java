@@ -13,7 +13,7 @@ import java.util.List;
 public interface SubjectFragmentContract {
 
     interface View extends BaseContract.BaseView {
-        void showBookList(List<BookLists.BookListsBean> bookLists, boolean isRefresh);
+        void showBookList(List<BookLists.BookListsBean> bookLists);
     }
 
     interface Presenter<T> extends BaseContract.BasePresenter<T> {

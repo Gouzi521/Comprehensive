@@ -1,5 +1,6 @@
 package com.ma.pingan.comprehensive.mvp.contract;
 
+import com.ma.pingan.comprehensive.base.BaseContract;
 import com.ma.pingan.comprehensive.bean.BooksByTag;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 
 public interface SearchByAuthorContract {
 
-    interface View extends BaseContract.BaseView, com.ma.pingan.comprehensive.base.BaseContract.BaseView {
+    interface View extends BaseContract.BaseView {
         void showSearchResultList(List<BooksByTag.TagBook> list);
     }
 

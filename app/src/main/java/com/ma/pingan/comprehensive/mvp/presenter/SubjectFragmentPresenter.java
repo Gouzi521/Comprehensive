@@ -1,5 +1,7 @@
 package com.ma.pingan.comprehensive.mvp.presenter;
 
+import android.util.Log;
+
 import com.ma.pingan.comprehensive.api.Api;
 import com.ma.pingan.comprehensive.base.BasePresenter;
 import com.ma.pingan.comprehensive.bean.BookLists;
@@ -28,18 +30,24 @@ public class SubjectFragmentPresenter extends BasePresenter<SubjectFragmentContr
     }
 
     @Override
-    public void getBookLists(String duration, String sort, final int start, int limit, String tag, String gender) {
+    public void getBookLists(String duration, String sort, final int start, int limit, final String tag, String gender) {
 
-        api.getBookLists(duration, sort, start + "", limit + "", tag, gender)
-                .observeOn(Schedulers.io())
+        api.getBookLists(duration, sort, start + "", limit + "", "都市", "male")
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<BookLists>() {
                     @Override
                     public void accept(@NonNull BookLists tags) throws Exception {
-                        mView.showBookList(tags.bookLists, start == 0 ? true : false);
+                        Log.e("tag",tags.bookLists.toString());
+                       mView.showBookList(tags.bookLists);
                         if (tags.bookLists == null || tags.bookLists.size() <= 0) {
                             ToastUtils.showSingleToast("暂无相关书单");
                         }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(@NonNull Throwable throwable) throws Exception {
+                        Log.e("tagaa",throwable.toString());
                     }
                 });
     }

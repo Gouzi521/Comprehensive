@@ -1,14 +1,22 @@
 package com.ma.pingan.comprehensive.base;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.ma.pingan.comprehensive.ComprehensiveApplication;
+import com.ma.pingan.comprehensive.dagger.component.AppComponent;
 import com.ma.pingan.comprehensive.widget.LoadingPage;
+
+import java.lang.reflect.Constructor;
 
 import javax.inject.Inject;
 
@@ -24,13 +32,8 @@ public abstract class BaseRvFragment  <T1 extends BaseContract.BasePresenter,T2>
 
     @Inject
     protected  T1 mPresenter;
-    @Inject
-    protected BaseQuickAdapter mAdapter;
 
-
-    /**
-     * [此方法不可再重写]
-     */
+    protected BaseQuickAdapter<T2,BaseViewHolder> mAdapter;
 
     public LoadingPage mLoadingPage;
 
@@ -39,20 +42,49 @@ public abstract class BaseRvFragment  <T1 extends BaseContract.BasePresenter,T2>
     private boolean isPrepared = false;
 
     private boolean isFirst = true; //只加载一次界面
-    protected View contentView;
-    private Unbinder bind;
 
+    protected View parentView;
+    protected FragmentActivity activity;
+    protected Context mContext;
+    protected LayoutInflater inflater;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        parentView = inflater.inflate(getLayoutResId(), container, false);
+        activity = getSupportActivity();
+        mContext = activity;
+        this.inflater = inflater;
+        return parentView;
+
+    }
+
+    public FragmentActivity getSupportActivity() {
+        return super.getActivity();
+    }
+
+    protected View getParentView() {
+        return parentView;
+    }
+    protected LayoutInflater getLayoutInflater() {
+        return inflater;
+    }
+
+    private Class<? extends BaseQuickAdapter<T2,BaseViewHolder>> clazz;
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        ButterKnife.bind(this, view);
+        initAdapter( clazz);
+
+        setupActivityComponent(ComprehensiveApplication.getsInstance().getAppComponent());
         if (mLoadingPage==null){
             mLoadingPage=new LoadingPage(getContext()) {
                 @Override
                 protected void initView() {
                     if (isFirst){
-                        BaseRvFragment.this.contentView=this.contentView;
-                        bind = ButterKnife.bind(BaseRvFragment.this, contentView);
+                        BaseRvFragment.this.parentView=this.contentView;
+                        ButterKnife.bind(this, contentView);
                         BaseRvFragment.this.initView();
                         isFirst = false;
                     }
@@ -65,15 +97,67 @@ public abstract class BaseRvFragment  <T1 extends BaseContract.BasePresenter,T2>
 
                 @Override
                 protected int getLayoutId() {
-                    return BaseRvFragment.this.getLayoutId();
+                    return BaseRvFragment.this.getLayoutResId();
                 }
             };
 
         }
         isPrepared=true;
         loadBaseData();
-        return mLoadingPage;
+
     }
+
+    protected void initAdapter(Class<? extends BaseQuickAdapter<T2,BaseViewHolder>> clazz) {
+        mAdapter = (BaseQuickAdapter<T2, BaseViewHolder>) createInstance(clazz);
+
+    }
+
+    public Object createInstance(Class<?> cls) {
+        Object obj;
+        try {
+            Constructor c1 = cls.getDeclaredConstructor(Context.class);
+            c1.setAccessible(true);
+            obj = c1.newInstance(mContext);
+        } catch (Exception e) {
+            obj = null;
+        }
+        return obj;
+    }
+    /**
+     * 在这里实现Fragment数据的缓加载.
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (getUserVisibleHint()) {//fragment可见
+            mIsVisible = true;
+            onVisible();
+        } else {//fragment不可见
+            mIsVisible = false;
+            onInvisible();
+        }
+    }
+
+
+    protected void onInvisible() {
+    }
+
+    /**
+     * 显示时加载数据,需要这样的使用
+     * 注意声明 isPrepared，先初始化
+     * 生命周期会先执行 setUserVisibleHint 再执行onActivityCreated
+     * 在 onActivityCreated 之后第一次显示加载数据，只加载一次
+     */
+    protected void onVisible() {
+        if (isFirst) {
+            setupActivityComponent(ComprehensiveApplication.getsInstance().getAppComponent());
+            if (mPresenter!=null){
+                mPresenter.attachView(this);}
+        }
+        loadBaseData();//根据获取的数据来调用showView()切换界面
+    }
+
+
 
     private void loadBaseData() {
 
@@ -96,7 +180,9 @@ public abstract class BaseRvFragment  <T1 extends BaseContract.BasePresenter,T2>
      *
      * @return
      */
-    protected abstract int getLayoutId();
+    public abstract
+    @LayoutRes
+    int getLayoutResId();
 
     /**
      * 3
@@ -105,11 +191,11 @@ public abstract class BaseRvFragment  <T1 extends BaseContract.BasePresenter,T2>
      */
     protected abstract void initView();
 
+
     /**
      * dagger2注入
      */
-    protected abstract void initInject();
-
+    protected abstract void setupActivityComponent(AppComponent appComponent);
 
 
 }

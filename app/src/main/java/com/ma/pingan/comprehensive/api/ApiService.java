@@ -40,6 +40,7 @@ public interface ApiService {
 
 
     //排行榜http://api.zhuishushenqi.com/ranking
+
     /**
      * 通过作者查询书名
      *
@@ -99,6 +100,7 @@ public interface ApiService {
      */
     @GET("/post/review/best-by-book")
     Observable<HotReview> getHotReview(@Query("book") String book);
+
     @GET("/book-list/{bookId}/recommend")
     Observable<RecommendBookList> getRecommendBookList(@Path("bookId") String bookId, @Query("limit") String limit);
 
@@ -111,12 +113,5 @@ public interface ApiService {
     @GET("http://chapter2.zhuishushenqi.com/chapter/{url}")
     Observable<ChapterRead> getChapterRead(@Path("url") String url);
 
-    /**
-     * 通过作者查询书名
-     *
-     * @param author
-     * @return
-     */
-    @GET("/book/accurate-search")
-    Observable<BooksByTag> searchBooksByAuthor(@Query("author") String author);
+
 }

@@ -7,6 +7,7 @@ import com.ma.pingan.comprehensive.ui.activity.ReadActivity;
 import com.ma.pingan.comprehensive.ui.activity.SearchAuthorActivity;
 import com.ma.pingan.comprehensive.ui.activity.SubjectBookListActivity;
 import com.ma.pingan.comprehensive.ui.activity.TopCategoryListActivity;
+import com.ma.pingan.comprehensive.ui.fragment.SubjectFragment;
 
 import dagger.Component;
 
@@ -25,4 +26,6 @@ public interface ActivityComponent {
 
     SearchAuthorActivity inject(SearchAuthorActivity activity);
     SubjectBookListActivity inject(SubjectBookListActivity activity);
+
+    SubjectFragment inject(SubjectFragment subjectFragment);
 }
