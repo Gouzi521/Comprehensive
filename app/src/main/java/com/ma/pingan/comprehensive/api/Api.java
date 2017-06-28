@@ -3,8 +3,10 @@ package com.ma.pingan.comprehensive.api;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.ma.pingan.comprehensive.base.Constant;
 import com.ma.pingan.comprehensive.bean.BookDetail;
+import com.ma.pingan.comprehensive.bean.BookLists;
 import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
+import com.ma.pingan.comprehensive.bean.BooksByTag;
 import com.ma.pingan.comprehensive.bean.CategoryList;
 import com.ma.pingan.comprehensive.bean.CategoryListLv2;
 import com.ma.pingan.comprehensive.bean.ChapterRead;
@@ -46,6 +48,10 @@ public class Api {
         return instance;
     }
 
+    public Observable<BookLists> getBookLists(String duration, String sort, String start, String limit, String tag, String gender) {
+        return service.getBookLists(duration, sort, start, limit, tag, gender);
+    }
+
     public Observable<Ranking> getRanking(String rankingId){
         return service.getRanking(rankingId);
     }
@@ -79,5 +85,9 @@ public class Api {
 
     public synchronized Observable<ChapterRead> getChapterRead(String url) {
         return service.getChapterRead(url);
+    }
+
+    public Observable<BooksByTag> searchBooksByAuthor(String author) {
+        return service.searchBooksByAuthor(author);
     }
 }

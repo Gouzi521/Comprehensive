@@ -1,9 +1,12 @@
 package com.ma.pingan.comprehensive.base;
 
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.ma.pingan.comprehensive.R;
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
 
 import butterknife.BindView;
@@ -17,6 +20,7 @@ public abstract class BaseRVActivity<T> extends BaseActivity{
 
 
 
+    @BindView(R.id.recyclerview)
     protected RecyclerView mRecyclerView;
     protected BaseQuickAdapter<T,BaseViewHolder> adapter;
 
@@ -46,5 +50,8 @@ public abstract class BaseRVActivity<T> extends BaseActivity{
 
     protected void initAdapter(boolean refreshable, boolean loadmoreable){
 
+        if (mRecyclerView!=null){
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
     }
 }

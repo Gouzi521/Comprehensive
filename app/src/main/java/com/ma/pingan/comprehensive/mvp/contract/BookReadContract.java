@@ -2,6 +2,7 @@ package com.ma.pingan.comprehensive.mvp.contract;
 
 
 
+import com.ma.pingan.comprehensive.base.BaseContract;
 import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.ChapterRead;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 public interface BookReadContract {
 
-    interface View extends BaseContract.BaseView, com.ma.pingan.comprehensive.base.BaseContract.BaseView {
+    interface View extends BaseContract.BaseView {
         void showBookToc(List<BookMixAToc.mixToc.Chapters> list);
 
         void showChapterRead(ChapterRead.Chapter data, int chapter);

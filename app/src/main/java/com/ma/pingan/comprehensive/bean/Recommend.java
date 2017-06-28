@@ -61,6 +61,19 @@ public class Recommend extends Base {
         public String recentReadingTime = "";
 
         @Override
+        public String toString() {
+            return "RecommendBooks{" +
+                    "_id='" + _id + '\'' +
+                    ", author='" + author + '\'' +
+                    ", cover='" + cover + '\'' +
+                    ", shortIntro='" + shortIntro + '\'' +
+                    ", title='" + title + '\'' +
+                    ", path='" + path + '\'' +
+                    ", updated='" + updated + '\'' +
+                    '}';
+        }
+
+        @Override
         public boolean equals(Object obj) {
             if (obj instanceof RecommendBooks) {
                 RecommendBooks bean = (RecommendBooks) obj;

@@ -6,6 +6,8 @@ import com.ma.pingan.comprehensive.api.Api;
 import com.ma.pingan.comprehensive.dagger.module.ApiModule;
 import com.ma.pingan.comprehensive.dagger.module.AppModule;
 
+import javax.inject.Singleton;
+
 import dagger.Component;
 
 /**

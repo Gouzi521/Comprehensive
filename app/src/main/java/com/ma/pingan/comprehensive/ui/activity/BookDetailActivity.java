@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -82,9 +84,11 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
     TextView mTvRecommendBookList;
     @BindView(R.id.rvRecommendBoookList)
     RecyclerView mRvRecommendBoookList;
-    @BindView(R.id.btnRead)
-    DrawableCenterButton btnRead;
+    @BindView(R.id.common_toolbar)
+    Toolbar commonToolbar;
 
+
+    public  static String author;
     private String bookId;
     private HotReviewAdapter mHotReviewAdapter;
     private List<HotReview.Reviews> mHotReviewList = new ArrayList<>();
@@ -179,6 +183,8 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
 
         mTvBookTitle.setText(data.title);
         mTvAuthor.setText(String.format(getString(R.string.book_detail_author), data.author));
+        author=mTvAuthor.getText().toString();
+        Log.e("TAG",author);
         mTvCatgory.setText(String.format(getString(R.string.book_detail_category), data.cat));
         mTvWordCount.setText(FormatUtils.formatWordCount(data.wordCount));
         mTvLatelyUpdate.setText(FormatUtils.getDescriptionTimeFromDateString(data.updated));
@@ -201,10 +207,12 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
         recommendBooks = new Recommend.RecommendBooks();
         recommendBooks.title = data.title;
         recommendBooks._id = data._id;
+        recommendBooks.author=data.author;
         recommendBooks.cover = data.cover;
         recommendBooks.lastChapter = data.lastChapter;
         recommendBooks.updated = data.updated;
 
+        //Log.e("tag", recommendBooks.toString());
         // refreshCollectionIcon();
     }
 
@@ -260,10 +268,18 @@ public class BookDetailActivity extends BaseActivity implements BookDetailContra
         }
     }
 
-
-    @OnClick(R.id.btnRead)
-    public void onViewClicked() {
-        if (recommendBooks == null) return;
-        ReadActivity.startActivity(this, recommendBooks);
+    @OnClick({R.id.tvBookListAuthor, R.id.btnRead})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tvBookListAuthor:
+                //String author = mTvAuthor.getText().toString().replaceAll(" ", "");
+                Log.e("TAG",author);
+                SearchAuthorActivity.startActivity(this, author);
+                break;
+            case R.id.btnRead:
+                if (recommendBooks == null) return;
+                ReadActivity.startActivity(this, recommendBooks);
+                break;
+        }
     }
 }

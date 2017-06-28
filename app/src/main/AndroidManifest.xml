@@ -23,6 +23,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.BookDetailActivity" />
+        <activity android:name=".ui.activity.SearchAuthorActivity" />
+        <activity android:name=".ui.activity.SubjectBookListActivity"></activity>
     </application>
 
 </manifest>

@@ -25,12 +25,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class BookReadPresenter extends BasePresenter<BookReadContract.View> implements BookReadContract.Presenter<BookReadContract.View>{
 
-    private Context context;
+
     private Api api;
 
     @Inject
-    public BookReadPresenter(Context context, Api api) {
-        this.context = context;
+    public BookReadPresenter(Api api) {
+
         this.api = api;
     }
 

@@ -5,6 +5,8 @@ import com.ma.pingan.comprehensive.api.support.HeaderInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -15,6 +17,7 @@ import okhttp3.OkHttpClient;
  */
 @Module
 public class ApiModule {
+
 
     @Provides
     public OkHttpClient provideOkHttpClient(){
