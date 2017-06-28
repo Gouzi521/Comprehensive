@@ -48,7 +48,7 @@ public class TopCategoryListActivity extends BaseActivity implements TopCategory
     private TopCategoryListAdapter maleAdapter;
     private TopCategoryListAdapter femaleAdapter;
     private String gender;
-    private Api api;
+
 
     @Override
     protected void configViews() {

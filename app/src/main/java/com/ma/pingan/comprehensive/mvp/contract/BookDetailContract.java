@@ -1,5 +1,6 @@
 package com.ma.pingan.comprehensive.mvp.contract;
 
+import com.ma.pingan.comprehensive.base.BaseContract;
 import com.ma.pingan.comprehensive.bean.BookDetail;
 import com.ma.pingan.comprehensive.bean.HotReview;
 import com.ma.pingan.comprehensive.bean.RecommendBookList;
@@ -13,7 +14,7 @@ import java.util.List;
 
 public interface BookDetailContract {
 
-    interface View extends BaseContract.BaseView, com.ma.pingan.comprehensive.base.BaseContract.BaseView {
+    interface View extends BaseContract.BaseView{
         void showBookDetail(BookDetail data);
 
         void showHotReview(List<HotReview.Reviews> list);

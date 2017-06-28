@@ -26,6 +26,13 @@
     <string name="book_detail_category"><![CDATA[&#160;|&#160;%1$s |&#160;]]></string>
     <string name="book_detail_retention_ratio">%1$s%%</string>
 
+    <!--搜索相关-->
+    <string name="search">搜索</string>
+    <string name="search_hot_search">大家都在搜</string>
+    <string name="search_change_a_lot">换一批</string>
+    <string name="search_result_lately_follower">"%1$d人在追 |&#160;"</string>
+    <string name="search_result_retention_ratio">"%1$s%%读者留存 |&#160;"</string>
+    <string name="search_result_author">%1$s著</string>
     <!--阅读页面相关-->
     <string name="book_read_reading">朗读</string>
     <string name="book_read_community">社区</string>
@@ -51,5 +58,6 @@
     <string name="book_read_would_you_like_to_add_this_to_the_book_shelf">是否将本书加入书架？</string>
     <string name="book_read_join_the_book_shelf">加入书架</string>
     <string name="book_read_not">不了</string>
+    <string name="subject_book_list">主题书单</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.ma.pingan.comprehensive.api;
 
 import com.ma.pingan.comprehensive.bean.BookDetail;
+import com.ma.pingan.comprehensive.bean.BookLists;
 import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
 import com.ma.pingan.comprehensive.bean.BooksByTag;
@@ -23,8 +24,30 @@ import retrofit2.http.Query;
 
 public interface ApiService {
 
-    //排行榜http://api.zhuishushenqi.com/ranking
+    /**
+     * 获取主题书单列表
+     * 本周最热：duration=last-seven-days&sort=collectorCount
+     * 最新发布：duration=all&sort=created
+     * 最多收藏：duration=all&sort=collectorCount
+     *
+     * @param tag    都市、古代、架空、重生、玄幻、网游
+     * @param gender male、female
+     * @param limit  20
+     * @return
+     */
+    @GET("/book-list")
+    Observable<BookLists> getBookLists(@Query("duration") String duration, @Query("sort") String sort, @Query("start") String start, @Query("limit") String limit, @Query("tag") String tag, @Query("gender") String gender);
 
+
+    //排行榜http://api.zhuishushenqi.com/ranking
+    /**
+     * 通过作者查询书名
+     *
+     * @param author
+     * @return
+     */
+    @GET("/book/accurate-search")
+    Observable<BooksByTag> searchBooksByAuthor(@Query("author") String author);
 
     /**
      * 获取单一排行榜

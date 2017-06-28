@@ -1,5 +1,7 @@
 package com.ma.pingan.comprehensive.base;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -42,20 +44,26 @@ public  abstract class BaseActivity   extends AppCompatActivity  {
         initData();
         configViews();
     }
-
+    protected abstract int getLayoutId();
+    protected abstract void initToolBar();
+    protected abstract void initInjector(AppComponent appComponent);
+    protected abstract void initData();
     protected abstract void configViews();
 
-    protected abstract void initToolBar();
 
-    protected abstract void initData();
 
-    protected abstract void initInjector(AppComponent appComponent);
 
-    protected abstract int getLayoutId();
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
+
+
+
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private void toolbarSetElevation(float elevation) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mCommonToolbar.setElevation(elevation);
+        }
     }
+
 }
