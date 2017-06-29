@@ -14,6 +14,7 @@ import com.ma.pingan.comprehensive.bean.ChapterRead;
 import com.ma.pingan.comprehensive.bean.HotReview;
 import com.ma.pingan.comprehensive.bean.Ranking;
 import com.ma.pingan.comprehensive.bean.RecommendBookList;
+import com.ma.pingan.comprehensive.bilientity.RegionRecommendInfo;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -34,7 +35,7 @@ public class Api {
 
     public Api(){
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl(Constant.API_BASE_URL)
+                .baseUrl(Constant.Bili_BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
               //  .client(okHttpClient)
@@ -48,6 +49,15 @@ public class Api {
             instance=new Api();
         return instance;
     }
+
+
+
+    public Observable<RegionRecommendInfo> getRegionRecommends(int id){
+        return service.getRegionRecommends(id);
+
+    }
+
+    //小说阅读
 
     public Observable<BookListDetail> getBookListDetail(String bookListId) {
         return service.getBookListDetail(bookListId);

@@ -7,7 +7,7 @@
     android:layout_margin="@dimen/card_margin"
     android:clickable="true"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="@color/card_view_background"
+    app:cardBackgroundColor="@color/White"
     app:cardCornerRadius="@dimen/card_corner_radius"
     app:cardElevation="@dimen/card_elevation">
 
@@ -49,14 +49,14 @@
             <ImageView
                 android:layout_width="@dimen/video_info_mini_icons_size"
                 android:layout_height="@dimen/video_info_mini_icons_size"
-                android:layout_marginStart="@dimen/default_general_margin"
+
                 android:src="@drawable/ic_play_circle_outline_black_24dp" />
 
             <TextView
                 android:id="@+id/item_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+
                 android:gravity="center"
                 android:textColor="@color/black_alpha_45"
                 android:textSize="@dimen/default_tiny_text_size" />
@@ -68,14 +68,14 @@
             <ImageView
                 android:layout_width="@dimen/video_info_mini_icons_size"
                 android:layout_height="@dimen/video_info_mini_icons_size"
-                android:layout_marginStart="@dimen/default_general_margin"
+
                 android:src="@drawable/ic_subtitles_black_24dp" />
 
             <TextView
                 android:id="@+id/item_review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/video_info_count_text_margin_start"
+
                 android:gravity="center"
                 android:textColor="@color/black_alpha_45"
                 android:textSize="@dimen/default_tiny_text_size" />

@@ -67,4 +67,5 @@
     <!--以下是bilibili-->
     <color name="black_alpha_45">#71000000</color>
     <color name="font_normal">#555555</color>
+    <color name="gray_80">#BEBBB4</color>
 </resources>

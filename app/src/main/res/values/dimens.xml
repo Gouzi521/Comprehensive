@@ -18,4 +18,10 @@
     <dimen name="region_recommend_icon_size">40dp</dimen>
     <dimen name="default_tiny_margin">3dp</dimen>
     <dimen name="home_recommend_head_image_size">22dp</dimen>
+    <dimen name="card_margin">10dp</dimen>
+    <dimen name="card_corner_radius">2dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_default_height">190dp</dimen>
+    <dimen name="card_image_default_height">120dp</dimen>
+    <dimen name="card_title_margin">5dp</dimen>
 </resources>

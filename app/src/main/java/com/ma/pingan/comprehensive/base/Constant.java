@@ -23,7 +23,7 @@ public class Constant {
     public static final String IMG_BASE_URL = "http://statics.zhuishushenqi.com";
 
     public static final String API_BASE_URL = "http://api.zhuishushenqi.com";
-
+    public static final String Bili_BASE_URL = "http://app.bilibili.com/";
     public static final int[] tagColors = new int[]{
             Color.parseColor("#90C5F0"),
             Color.parseColor("#91CED5"),

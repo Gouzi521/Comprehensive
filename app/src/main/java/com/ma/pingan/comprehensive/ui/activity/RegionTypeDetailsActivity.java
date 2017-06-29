@@ -12,9 +12,8 @@ import com.ma.pingan.comprehensive.base.BaseActivity;
 import com.ma.pingan.comprehensive.base.Constant;
 import com.ma.pingan.comprehensive.bilientity.RegionTypesInfo;
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
-import com.ma.pingan.comprehensive.dagger.component.DaggerActivityComponent;
 import com.ma.pingan.comprehensive.ui.fragment.RegionTypeDetailsFragment;
-import com.ma.pingan.comprehensive.ui.fragment.Subject2Fragment;
+import com.ma.pingan.comprehensive.ui.fragment.RegionTypeRecommendFragment;
 import com.ma.pingan.comprehensive.widget.RVPIndicator;
 
 import java.util.ArrayList;
@@ -67,7 +66,7 @@ public class RegionTypeDetailsActivity extends BaseActivity {
 
         mTabContents = new ArrayList<>();
         for (int i = 0; i < titles.size(); i++) {
-            mTabContents.add(RegionTypeDetailsFragment.newInstance( i));
+            mTabContents.add(RegionTypeRecommendFragment.newInstance( i));
         }
 
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {

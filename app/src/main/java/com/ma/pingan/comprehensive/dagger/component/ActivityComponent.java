@@ -8,6 +8,7 @@ import com.ma.pingan.comprehensive.ui.activity.SearchAuthorActivity;
 import com.ma.pingan.comprehensive.ui.activity.SubjectBookListActivity;
 import com.ma.pingan.comprehensive.ui.activity.SubjectBookListDetailActivity;
 import com.ma.pingan.comprehensive.ui.activity.TopCategoryListActivity;
+import com.ma.pingan.comprehensive.ui.fragment.RegionTypeRecommendFragment;
 import com.ma.pingan.comprehensive.ui.fragment.Subject2Fragment;
 import com.ma.pingan.comprehensive.ui.fragment.SubjectFragment;
 
@@ -32,4 +33,5 @@ public interface ActivityComponent {
     SubjectFragment inject(SubjectFragment subjectFragment);
     Subject2Fragment inject(Subject2Fragment subjectFragment);
     SubjectBookListDetailActivity inject(SubjectBookListDetailActivity activity);
+    RegionTypeRecommendFragment inject(RegionTypeRecommendFragment fragment);
 }
