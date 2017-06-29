@@ -70,13 +70,11 @@ public abstract class BaseRvFragment  <T1 extends BaseContract.BasePresenter,T2>
         return inflater;
     }
 
-    private Class<? extends BaseQuickAdapter<T2,BaseViewHolder>> clazz;
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        initAdapter( clazz);
-
         setupActivityComponent(ComprehensiveApplication.getsInstance().getAppComponent());
         if (mLoadingPage==null){
             mLoadingPage=new LoadingPage(getContext()) {
@@ -110,6 +108,7 @@ public abstract class BaseRvFragment  <T1 extends BaseContract.BasePresenter,T2>
     protected void initAdapter(Class<? extends BaseQuickAdapter<T2,BaseViewHolder>> clazz) {
         mAdapter = (BaseQuickAdapter<T2, BaseViewHolder>) createInstance(clazz);
 
+      //  initAdapter(clazz);
     }
 
     public Object createInstance(Class<?> cls) {
