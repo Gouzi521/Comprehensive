@@ -1,38 +1,40 @@
 package com.ma.pingan.comprehensive.ui.fragment;
 
-
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.ma.pingan.comprehensive.R;
-import com.ma.pingan.comprehensive.base.BaseRvFragment;
+import com.ma.pingan.comprehensive.base.BaseFragment;
 import com.ma.pingan.comprehensive.bean.BookLists;
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
 import com.ma.pingan.comprehensive.dagger.component.DaggerActivityComponent;
 import com.ma.pingan.comprehensive.manger.SettingManager;
 import com.ma.pingan.comprehensive.mvp.contract.SubjectFragmentContract;
 import com.ma.pingan.comprehensive.mvp.presenter.SubjectFragmentPresenter;
-import com.ma.pingan.comprehensive.widget.EasyLoadMoreView;
+import com.ma.pingan.comprehensive.ui.activity.SubjectBookListDetailActivity;
+import com.ma.pingan.comprehensive.ui.adapter.SubjectBookListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by mapingan
+ * on 2017/6/29 0029.
  */
-public class SubjectFragment extends BaseRvFragment<SubjectFragmentPresenter,BookLists.BookListsBean> implements SubjectFragmentContract.View, SwipeRefreshLayout.OnRefreshListener, BaseQuickAdapter.RequestLoadMoreListener {
 
+public class Subject2Fragment extends BaseFragment  implements SubjectFragmentContract.View, BaseQuickAdapter.OnItemClickListener {
+
+
+    @Inject
+    SubjectFragmentPresenter mPresenter;
     public final static String BUNDLE_TAG = "tag";
     public final static String BUNDLE_TAB = "tab";
     public String currendTag;
@@ -45,16 +47,11 @@ public class SubjectFragment extends BaseRvFragment<SubjectFragmentPresenter,Boo
     @BindView(R.id.swipeLayout)
     SwipeRefreshLayout swipeLayout;
 
+    private SubjectBookListAdapter mAdapter;
+    private List<BookLists.BookListsBean> data =new ArrayList<>();
 
-    protected int start = 0;
-
-    private int page;
-    private final static int PRE_PAGE = 20;
-    private List<BookLists.BookListsBean> data=new ArrayList<>();
-
-    private boolean isRefresh = false;
-    public static SubjectFragment newInstance(String tag, int tab) {
-        SubjectFragment fragment = new SubjectFragment();
+    public static Subject2Fragment newInstance(String tag, int tab) {
+        Subject2Fragment fragment = new Subject2Fragment();
         Bundle bundle = new Bundle();
         bundle.putString(BUNDLE_TAG, tag);
         bundle.putInt(BUNDLE_TAB, tab);
@@ -62,31 +59,27 @@ public class SubjectFragment extends BaseRvFragment<SubjectFragmentPresenter,Boo
         return fragment;
     }
 
-
+    @Override
+    public int getLayoutResId() {
+        return  R.layout.common_easy_recyclerview;
+    }
 
     @Override
     protected void setupActivityComponent(AppComponent appComponent) {
+
         DaggerActivityComponent.builder()
                 .appComponent(appComponent)
                 .build()
                 .inject(this);
     }
 
-
     @Override
-    protected void loadData() {
-        mPresenter.getBookLists(duration, sort, 0, PRE_PAGE, currendTag, SettingManager.getInstance().getUserChooseSex());
+    public void attachView() {
+
     }
 
     @Override
-    public int getLayoutResId() {
-        return R.layout.common_easy_recyclerview;
-    }
-
-
-    @Override
-    protected void initView() {
-
+    public void initDatas() {
         currentTab = getArguments().getInt(BUNDLE_TAB);
         switch (currentTab) {
             case 0:
@@ -103,16 +96,21 @@ public class SubjectFragment extends BaseRvFragment<SubjectFragmentPresenter,Boo
                 sort = "collectorCount";
                 break;
         }
-        swipeLayout.setColorSchemeColors(getResources().getColor(R.color.light_black));
-        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerview.setAdapter(mAdapter);
-        swipeLayout.setOnRefreshListener(this);
-        mAdapter.setLoadMoreView(new EasyLoadMoreView());
-        mAdapter.setOnLoadMoreListener(this,recyclerview);
+
+
     }
 
+    @Override
+    public void configViews() {
 
+        mAdapter=new SubjectBookListAdapter(R.layout.item_sub_category_list,data);
+        recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerview.setAdapter(mAdapter);
+        mPresenter.attachView(this);
+        mPresenter.getBookLists(duration, sort, 0, 20, currendTag, "male");
 
+        mAdapter.setOnItemClickListener(this);
+    }
 
     @Override
     public void showError() {
@@ -127,38 +125,13 @@ public class SubjectFragment extends BaseRvFragment<SubjectFragmentPresenter,Boo
     @Override
     public void showBookList(List<BookLists.BookListsBean> bookLists) {
 
+        data.clear();
         data.addAll(bookLists);
-        if (isRefresh){
-            swipeLayout.setRefreshing(false);
-            mAdapter.setEnableLoadMore(true);
-            isRefresh = false;
-            mAdapter.setNewData(data);
-        }else{
-            swipeLayout.setEnabled(true);
-            page++;
-            mAdapter.addData(data);
-            mAdapter.loadMoreComplete();
-        }
-    }
-
-
-    @Override
-    public void onRefresh() {
-        page = 0;
-        isRefresh =true;
-        mAdapter.setEnableLoadMore(false);
-        mPresenter.getBookLists(duration, sort, 0, PRE_PAGE, currendTag, SettingManager.getInstance().getUserChooseSex());
-
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onLoadMoreRequested() {
-        if (page >= 20) {
-            mAdapter.loadMoreEnd();
-            swipeLayout.setEnabled(true);
-        } else {
-            loadData();
-            swipeLayout.setEnabled(false);
-        }
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+        SubjectBookListDetailActivity.startActivity(activity, mAdapter.getItem(position));
     }
 }

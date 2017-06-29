@@ -1,6 +1,7 @@
 package com.ma.pingan.comprehensive.api;
 
 import com.ma.pingan.comprehensive.bean.BookDetail;
+import com.ma.pingan.comprehensive.bean.BookListDetail;
 import com.ma.pingan.comprehensive.bean.BookLists;
 import com.ma.pingan.comprehensive.bean.BookMixAToc;
 import com.ma.pingan.comprehensive.bean.BooksByCats;
@@ -23,6 +24,14 @@ import retrofit2.http.Query;
  */
 
 public interface ApiService {
+
+    /**
+     * 获取书单详情
+     *
+     * @return
+     */
+    @GET("/book-list/{bookListId}")
+    Observable<BookListDetail> getBookListDetail(@Path("bookListId") String bookListId);
 
     /**
      * 获取主题书单列表

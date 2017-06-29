@@ -7,4 +7,15 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="book_read_bottom_text">12dp</dimen>
     <dimen name="book_read_top_text">16sp</dimen>
+    <dimen name="default_general_margin">10dp</dimen>
+    <dimen name="more_item_image_size">50dp</dimen>
+    <dimen name="default_tiny_padding">5dp</dimen>
+    <dimen name="default_small_text_size">14dp</dimen>
+    <dimen name="video_item_image_width">140dp</dimen>
+    <dimen name="video_item_layout_height">90dp</dimen>
+    <dimen name="video_info_mini_icons_size">12dp</dimen>
+    <dimen name="default_tiny_text_size">12sp</dimen>
+    <dimen name="region_recommend_icon_size">40dp</dimen>
+    <dimen name="default_tiny_margin">3dp</dimen>
+    <dimen name="home_recommend_head_image_size">22dp</dimen>
 </resources>

@@ -2,16 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ma.pingan.comprehensive.ui.fragment.VideoFragment">
+    tools:context="com.ma.pingan.comprehensive.ui.fragment.RegionTypeDetailsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-
     <android.support.v7.widget.RecyclerView
-
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingTop="@dimen/activity_horizontal_margin"
+        android:scrollbars="none" />
 
 </FrameLayout>

@@ -370,4 +370,11 @@ public class ReadActivity extends BaseActivity implements BookReadContract.View 
         }
 
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
+    }
 }

@@ -12,21 +12,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            </activity>
+        </activity>
         <activity android:name=".excludedemo.BottomSheetActivity" />
         <activity android:name=".ui.activity.RankingActivity" />
-        <activity android:name=".ui.activity.TopCategoryListActivity">
-
-        </activity>
+        <activity android:name=".ui.activity.ReadActivity" />
+        <activity android:name=".ui.activity.TopCategoryListActivity" />
         <activity android:name=".ui.activity.BookDetailActivity" />
         <activity android:name=".ui.activity.SearchAuthorActivity" />
-        <activity android:name=".ui.activity.SubjectBookListActivity"></activity>
+        <activity android:name=".ui.activity.SubjectBookListActivity" />
+        <activity android:name=".ui.activity.SubjectBookListDetailActivity" />
+        <activity android:name=".ui.activity.RegionTypeDetailsActivity" />
+        <activity android:name=".ui.fragment.RegionTypeRecommendActivity"></activity>
     </application>
 
 </manifest>

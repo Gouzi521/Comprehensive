@@ -38,8 +38,9 @@ public class SubjectFragmentPresenter extends BasePresenter<SubjectFragmentContr
                 .subscribe(new Consumer<BookLists>() {
                     @Override
                     public void accept(@NonNull BookLists tags) throws Exception {
-                        Log.e("tag",tags.bookLists.toString());
+
                        mView.showBookList(tags.bookLists);
+                        Log.e("tag",tags.bookLists.toString());
                         if (tags.bookLists == null || tags.bookLists.size() <= 0) {
                             ToastUtils.showSingleToast("暂无相关书单");
                         }

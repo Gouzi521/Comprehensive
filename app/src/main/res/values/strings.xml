@@ -59,5 +59,12 @@
     <string name="book_read_join_the_book_shelf">加入书架</string>
     <string name="book_read_not">不了</string>
     <string name="subject_book_list">主题书单</string>
+    <string name="subject_book_msg"><![CDATA[共%1$d本书 |&#160; %2$d人收藏]]></string>
+    <string name="subject_book_list_detail">书单详情</string>
+    <string name="subject_book_list_detail_book_lately_follower"><![CDATA[%1$d&#160;人在追]]></string>
+    <string name="subject_book_list_detail_book_word_count"><![CDATA[|&#160;%1$d&#160;万字]]></string>
+    <string name="hot_videos">热门视频</string>
+    <string name="hot_recommend">热门推荐</string>
+    <string name="rank">排行榜</string>
 
 </resources>

@@ -1,77 +1,74 @@
 package com.ma.pingan.comprehensive.ui.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.ma.pingan.comprehensive.R;
 import com.ma.pingan.comprehensive.base.BaseActivity;
+import com.ma.pingan.comprehensive.base.Constant;
+import com.ma.pingan.comprehensive.bilientity.RegionTypesInfo;
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
 import com.ma.pingan.comprehensive.dagger.component.DaggerActivityComponent;
+import com.ma.pingan.comprehensive.ui.fragment.RegionTypeDetailsFragment;
 import com.ma.pingan.comprehensive.ui.fragment.Subject2Fragment;
-import com.ma.pingan.comprehensive.ui.fragment.SubjectFragment;
 import com.ma.pingan.comprehensive.widget.RVPIndicator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
 
-public class SubjectBookListActivity extends BaseActivity {
+public class RegionTypeDetailsActivity extends BaseActivity {
 
-
-    @BindView(R.id.indicatorSubject)
+    @BindView(R.id.indicatorBili)
     RVPIndicator mIndicator;
-    @BindView(R.id.viewpagerSubject)
+    @BindView(R.id.viewpagerBili)
     ViewPager mViewPager;
-
     private List<Fragment> mTabContents;
     private FragmentPagerAdapter mAdapter;
-    private List<String> mDatas;
 
-
-    public static void startActivity(Context context) {
-        Intent intent = new Intent(context, SubjectBookListActivity.class);
-        context.startActivity(intent);
-    }
-
+    private RegionTypesInfo.DataBean mDataBean;
+    private List<String> titles = new ArrayList<>();
+    private static String titile;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_subject_book_list;
+        return R.layout.activity_region_type_details;
     }
 
     @Override
     protected void initToolBar() {
-        mCommonToolbar.setTitle(R.string.subject_book_list);
+        mCommonToolbar.setTitle(titile);
         mCommonToolbar.setNavigationIcon(R.drawable.ab_back);
     }
 
     @Override
     protected void initInjector(AppComponent appComponent) {
-        DaggerActivityComponent.builder()
-                .appComponent(appComponent)
-                .build()
-                .inject(this);
+
     }
 
     @Override
     protected void initData() {
-        mDatas=new ArrayList<>();
-        mDatas.add("本周最热");
-        mDatas.add("最新发布");
-        mDatas.add("最多收藏");
+        Bundle mBundle = getIntent().getExtras();
+        if (mBundle != null) {
+            mDataBean = mBundle.getParcelable(Constant.EXTRA_PARTITION);
+        }
+        Observable.fromIterable(mDataBean.getChildren())
+                .subscribe(childrenBeen -> {
+                    titles.add(childrenBeen.getName());
+                });
 
 
         mTabContents = new ArrayList<>();
-        mTabContents.add(Subject2Fragment.newInstance("", 0));
-        mTabContents.add(Subject2Fragment.newInstance("", 1));
-        mTabContents.add(Subject2Fragment.newInstance("", 2));
+        for (int i = 0; i < titles.size(); i++) {
+            mTabContents.add(RegionTypeDetailsFragment.newInstance( i));
+        }
 
         mAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -88,9 +85,20 @@ public class SubjectBookListActivity extends BaseActivity {
 
     @Override
     protected void configViews() {
-        mIndicator.setTabItemTitles(mDatas);
+        mIndicator.setTabItemTitles(titles);
         mViewPager.setAdapter(mAdapter);
         mIndicator.setViewPager(mViewPager, 0);
+    }
+
+
+    public static void launch(FragmentActivity activity, RegionTypesInfo.DataBean dataBean,String itemName) {
+
+        Intent mIntent = new Intent(activity, RegionTypeDetailsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString(titile,itemName);
+        bundle.putParcelable(Constant.EXTRA_PARTITION, dataBean);
+        mIntent.putExtras(bundle);
+        activity.startActivity(mIntent);
     }
 
 
