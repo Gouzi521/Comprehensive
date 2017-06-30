@@ -15,6 +15,7 @@ import com.ma.pingan.comprehensive.bean.HotReview;
 import com.ma.pingan.comprehensive.bean.Ranking;
 import com.ma.pingan.comprehensive.bean.RecommendBookList;
 import com.ma.pingan.comprehensive.bilientity.RegionRecommendInfo;
+import com.ma.pingan.comprehensive.bilientity.VideoDetailsInfo;
 
 import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
@@ -51,6 +52,10 @@ public class Api {
     }
 
 
+    public Observable<VideoDetailsInfo> getVideoDetails(int   aid){
+        return service.getVideoDetails(aid);
+
+    }
 
     public Observable<RegionRecommendInfo> getRegionRecommends(int id){
         return service.getRegionRecommends(id);

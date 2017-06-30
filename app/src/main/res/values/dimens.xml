@@ -24,4 +24,12 @@
     <dimen name="card_default_height">190dp</dimen>
     <dimen name="card_image_default_height">120dp</dimen>
     <dimen name="card_title_margin">5dp</dimen>
+    <dimen name="appbar_parallax_max_height">236dp</dimen>
+    <dimen name="head_image_bg_height">128dp</dimen>
+    <dimen name="default_medium_text_size">16sp</dimen>
+    <dimen name="default_big_text_size">18sp</dimen>
+    <dimen name="line_height">1dp</dimen>
+    <dimen name="fab_default_elevation">4dp</dimen>
+    <dimen name="fab_margin_height">190dp</dimen>
+    <dimen name="floating_action_button_size_half">32dp</dimen>
 </resources>

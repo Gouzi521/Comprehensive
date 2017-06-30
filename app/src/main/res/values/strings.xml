@@ -69,5 +69,6 @@
     <string name="all_dynamic">全区动态</string>
     <string name="new_videos">最新视频</string>
     <string name="goin_and_see">进去看看</string>
+    <string name="play_immediately">立即播放</string>
 
 </resources>

@@ -17,6 +17,8 @@ import java.lang.annotation.RetentionPolicy;
 public class Constant {
 
 
+    public static String EXTRA_IMG_URL = "extra_img_url";
+    public static String EXTRA_AV = "extra_av";
     public static final String EXTRA_PARTITION = "extra_partition";
 
 

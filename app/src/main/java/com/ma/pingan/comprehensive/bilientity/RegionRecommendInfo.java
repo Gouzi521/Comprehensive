@@ -12,29 +12,9 @@ import java.util.List;
  * 分区推荐页模型类
  */
 
-public class RegionRecommendInfo implements MultiItemEntity{
-
-  public static final int FIRST = 0;
-  public static final int SECOND = 1;
-  public static final int THRID = 2;
-//  public static final int FOURTH = 3;
-//  public static final int FIFTH = 2;
-//  public static final int SIXTH = 3;
+public class RegionRecommendInfo {
 
 
-  private int type;
-
-  public int getType() {
-    return type;
-  }
-
-  public void setType(int type) {
-    this.type = type;
-  }
-  @Override
-  public int getItemType() {
-    return getType();
-  }
   /**
    * code : 0
    * data : {"banner":{"top":[{"id":14771,"title":"甜甜的","image":"http://i0.hdslb.com/bfs/archive/ffcc6a3d94376d1f861564c00e27d4c24708c5ea.png","hash":"dc7794449365b555f5ce2abed80b4570","uri":"http://www.bilibili.com/video/av6426292/"},{"id":14763,"title":"这是胖次异变啊","image":"http://i0.hdslb.com/bfs/archive/f858cc6d8251c272f5718ce53132944303ef4be0.jpg","hash":"69e292ab969724dcc67a44eed54eae22","uri":"http://www.bilibili.com/video/av6404559/"},{"id":14402,"title":"宽叔驾到","image":"http://i0.hdslb.com/bfs/archive/48cba7ce3866833847b439ffd945d1a3f363324a.jpg","hash":"a84f1b249c7ea5cbabbc3d1edef2a71f","uri":"http://www.bilibili.com/video/av6708043/"},{"id":14261,"title":"迷幻感","image":"http://i0.hdslb.com/bfs/archive/2a11e7c994b5510eb589af91a88d6e983ff1b5f5.jpg","hash":"b4e527b2e6007cc5e719369d9a895545","uri":"http://www.bilibili.com/video/av6350157/"}]},"recommend":[{"title":"（MMD）TDA
@@ -326,6 +306,21 @@ public class RegionRecommendInfo implements MultiItemEntity{
 
       private int favourite;
 
+      @Override
+      public String toString() {
+        return "RecommendBean{" +
+                "title='" + title + '\'' +
+                ", cover='" + cover + '\'' +
+                ", uri='" + uri + '\'' +
+                ", param='" + param + '\'' +
+                ", gotoX='" + gotoX + '\'' +
+                ", name='" + name + '\'' +
+                ", play=" + play +
+                ", danmaku=" + danmaku +
+                ", reply=" + reply +
+                ", favourite=" + favourite +
+                '}';
+      }
 
       public String getTitle() {
 

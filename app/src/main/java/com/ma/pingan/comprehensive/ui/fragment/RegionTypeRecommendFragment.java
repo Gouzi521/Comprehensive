@@ -1,13 +1,16 @@
 package com.ma.pingan.comprehensive.ui.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.ma.pingan.comprehensive.R;
 import com.ma.pingan.comprehensive.base.BaseFragment;
 import com.ma.pingan.comprehensive.bilientity.RegionRecommendInfo;
@@ -15,7 +18,11 @@ import com.ma.pingan.comprehensive.dagger.component.AppComponent;
 import com.ma.pingan.comprehensive.dagger.component.DaggerActivityComponent;
 import com.ma.pingan.comprehensive.mvp.contract.RegionTypeRecommendContract;
 import com.ma.pingan.comprehensive.mvp.presenter.RegionTypeRecommendPresenter;
-import com.ma.pingan.comprehensive.ui.adapter.RegionTypeRecommendAdapter;
+import com.ma.pingan.comprehensive.ui.activity.VideoDetailsActivity;
+import com.ma.pingan.comprehensive.ui.adapter.HotRecyclerAdapter;
+import com.ma.pingan.comprehensive.ui.adapter.NewRecyclerAdapter;
+import com.ma.pingan.comprehensive.ui.adapter.RecommendRecyclerAdapter;
+import com.ma.pingan.comprehensive.widget.FullyLinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,11 +36,20 @@ import butterknife.Unbinder;
 public class RegionTypeRecommendFragment extends BaseFragment implements RegionTypeRecommendContract.View {
 
 
-    @BindView(R.id.recyclerview)
-    RecyclerView recyclerview;
-    Unbinder unbinder;
-    private List<RegionRecommendInfo> allData = new ArrayList<>();
-    private List<RegionRecommendInfo.DataBean.BannerBean.TopBean> banners = new ArrayList<>();
+
+    @BindView(R.id.recyclerview_item1)
+    RecyclerView titleRecycler;
+    @BindView(R.id.recyclerview_item2)
+    RecyclerView hotRecycler;
+    @BindView(R.id.recyclerview_item3)
+    RecyclerView newRecycler;
+    @BindView(R.id.recyclerview_item4)
+    RecyclerView recommeRecycler;
+
+    private List<RegionRecommendInfo.DataBean.RecommendBean> recommendData ;
+    private List<RegionRecommendInfo.DataBean.NewBean> newData ;
+    private List<RegionRecommendInfo.DataBean.DynamicBean> dynamiData ;
+
 
     public final static String BUNDLE_TAB = "tab";
 
@@ -42,7 +58,10 @@ public class RegionTypeRecommendFragment extends BaseFragment implements RegionT
     @Inject
     RegionTypeRecommendPresenter mPresenter;
 
-    private RegionTypeRecommendAdapter adapter;
+    private HotRecyclerAdapter hotAdapter;
+    private NewRecyclerAdapter newAdapter;
+    private RecommendRecyclerAdapter recomAdapter;
+
 
     @Override
     public int getLayoutResId() {
@@ -72,12 +91,28 @@ public class RegionTypeRecommendFragment extends BaseFragment implements RegionT
     @Override
     public void configViews() {
 
-        adapter = new RegionTypeRecommendAdapter(allData);
-        recyclerview.setLayoutManager(new GridLayoutManager(getContext(),2));
+        hotAdapter = new HotRecyclerAdapter(R.layout.layout_region_recommend_card_item, recommendData);
+        newAdapter = new NewRecyclerAdapter(R.layout.layout_region_recommend_card_item, newData);
+        recomAdapter = new RecommendRecyclerAdapter(R.layout.layout_region_recommend_card_item, dynamiData);
 
-        recyclerview.setAdapter(adapter);
+
+        hotRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        newRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recommeRecycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
+//
+//
+        hotRecycler.setAdapter(hotAdapter);
+        newRecycler.setAdapter(newAdapter);
+        recommeRecycler.setAdapter(recomAdapter);
+
+
         mPresenter.attachView(this);
-        mPresenter.getRegionList(rid);
+        mPresenter.getRegionList(23);
+
+
+        hotAdapter.setOnItemClickListener((adapter, view, position) ->
+            VideoDetailsActivity.launch((Activity) mContext, Integer.valueOf(recommendData.get(position).getParam()), recommendData.get(position).getCover()));
+
     }
 
 
@@ -92,7 +127,6 @@ public class RegionTypeRecommendFragment extends BaseFragment implements RegionT
     }
 
 
-
     public static Fragment newInstance(int rid) {
         RegionTypeRecommendFragment fragment = new RegionTypeRecommendFragment();
         Bundle bundle = new Bundle();
@@ -102,23 +136,25 @@ public class RegionTypeRecommendFragment extends BaseFragment implements RegionT
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        unbinder = ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-    }
-
-    @Override
     public void showRegion(List<RegionRecommendInfo> list) {
-        allData.clear();
-        allData.addAll(list);
-        adapter.notifyDataSetChanged();
+        recommendData=new ArrayList<>();
+        newData=new ArrayList<>();
+        dynamiData=new ArrayList<>();
+        recommendData.clear();
+        newData.clear();
+        dynamiData.clear();
+
+        for (int i = 0; i < 4; i++) {
+            recommendData.addAll(list.get(i).getData().getRecommend());
+            newData.addAll(list.get(i).getData().getNewX());
+            dynamiData.addAll(list.get(i).getData().getDynamic());
+        }
+
+
+        hotAdapter.notifyDataSetChanged();
+        newAdapter.notifyDataSetChanged();
+        recomAdapter.notifyDataSetChanged();
     }
+
+
 }

@@ -11,7 +11,7 @@
         android:id="@+id/item_type_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+
         android:src="@drawable/ic_header_new" />
 
     <TextView
@@ -29,7 +29,8 @@
         android:id="@+id/item_type_more"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+
+        android:layout_alignParentRight="true"
         android:background="@drawable/btn_more_bg"
         android:clickable="true"
         android:text="@string/goin_and_see"

@@ -1,5 +1,6 @@
 package com.ma.pingan.comprehensive.mvp.presenter;
 
+import android.nfc.Tag;
 import android.util.Log;
 
 import com.ma.pingan.comprehensive.api.Api;
@@ -41,9 +42,12 @@ public class RegionTypeRecommendPresenter extends BasePresenter<RegionTypeRecomm
                 .subscribe(new Consumer<RegionRecommendInfo>() {
                     @Override
                     public void accept(@NonNull RegionRecommendInfo dataBean) throws Exception {
+                        Log.e(TAG,dataBean.getData().getRecommend().size()+"");
+                        Log.e(TAG,dataBean.getData().getDynamic().size()+"");
+                        Log.e(TAG,dataBean.getData().getNewX().size()+"");
                         List<RegionRecommendInfo> data=new ArrayList<RegionRecommendInfo>();
                         data.add(dataBean);
-                       mView.showRegion(data);
+                        mView.showRegion(data);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

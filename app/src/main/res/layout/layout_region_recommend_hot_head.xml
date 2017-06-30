@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:orientation="horizontal"
     android:paddingEnd="@dimen/default_general_margin"
     android:paddingStart="@dimen/default_general_margin"
     android:paddingTop="@dimen/default_general_margin">
@@ -13,7 +12,7 @@
         android:id="@+id/item_type_img"
         android:layout_width="@dimen/home_recommend_head_image_size"
         android:layout_height="@dimen/home_recommend_head_image_size"
-        android:layout_centerInParent="true"
+
         android:src="@drawable/ic_category_promo" />
 
     <TextView
@@ -35,11 +34,12 @@
         android:background="@drawable/btn_rank_bg"
         android:drawablePadding="@dimen/default_tiny_padding"
 
+        android:layout_alignParentRight="true"
         android:padding="@dimen/default_tiny_padding"
         android:text="@string/rank"
         android:textColor="@color/White"
         android:textSize="@dimen/default_tiny_text_size" />
 
 
-</LinearLayout>
+</RelativeLayout>
 

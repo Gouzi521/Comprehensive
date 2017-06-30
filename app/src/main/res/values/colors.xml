@@ -68,4 +68,5 @@
     <color name="black_alpha_45">#71000000</color>
     <color name="font_normal">#555555</color>
     <color name="gray_80">#BEBBB4</color>
+    <color name="gray_20">#B3B3B3</color>
 </resources>
