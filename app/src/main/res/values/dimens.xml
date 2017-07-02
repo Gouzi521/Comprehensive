@@ -32,4 +32,11 @@
     <dimen name="fab_default_elevation">4dp</dimen>
     <dimen name="fab_margin_height">190dp</dimen>
     <dimen name="floating_action_button_size_half">32dp</dimen>
+    <dimen name="video_details_margin_top">26dp</dimen>
+    <dimen name="default_small_padding">8dp</dimen>
+    <dimen name="default_grow_margin">20dp</dimen>
+    <dimen name="card_small_radius">2dp</dimen>
+    <dimen name="card_small_elevation">0dp</dimen>
+    <dimen name="video_details_text_width">70dp</dimen>
+    <dimen name="video_details_text_height">30dp</dimen>
 </resources>

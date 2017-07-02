@@ -70,5 +70,30 @@
     <string name="new_videos">最新视频</string>
     <string name="goin_and_see">进去看看</string>
     <string name="play_immediately">立即播放</string>
+    <string name="about_menu_action_share">分享</string>
+    <string name="coin">投硬币</string>
+    <string name="collection">收藏</string>
+    <string name="cache">缓存</string>
+    <string name="add_follow">关注</string>
+    <string name="about_tag">标签相关</string>
+    <string name="tag_edit">相关</string>
+    <string name="video_about">视频相关</string>
+    <string name="charging">请赐予我电量吧</string>
+    <string name="charg">充电</string>
+    <string name="more_charging">更多电量,更多灵感哟  o(*≧▽≦)ツ</string>
+
+    <string name="setting_key_mobile_network_play">mobile_network_play</string>
+    <string name="setting_key_mobile_network_download">mobile_network_download</string>
+    <string name="setting_key_sound_effect">sound_effect</string>
+    <string name="network">网络</string>
+    <string name="mobile_network_play">使用移动网络播放</string>
+    <string name="mobile_network_download">使用移动网络下载</string>
+    <string name="play">播放</string>
+    <string name="sound_effect">音效调节</string>
+    <string name="tips">温馨提示</string>
+    <string name="play_tips">当前处于移动网络，确定打开移动网络播放开关吗？</string>
+    <string name="play_tips_sure">立即打开</string>
+    <string name="cancel">取消</string>
+    <string name="unknown">未知</string>
 
 </resources>

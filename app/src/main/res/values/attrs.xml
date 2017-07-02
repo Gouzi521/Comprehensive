@@ -90,4 +90,11 @@
         <attr name="atg_horizontalPadding" format="dimension" />
         <attr name="atg_verticalPadding" format="dimension" />
     </declare-styleable>
+
+    <!-- CircleImageView -->
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_overlay" format="boolean" />
+    </declare-styleable>
 </resources>

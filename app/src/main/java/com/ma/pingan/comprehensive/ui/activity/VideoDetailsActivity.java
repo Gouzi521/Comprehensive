@@ -229,9 +229,8 @@ public class VideoDetailsActivity extends BaseActivity {
         mFAB.setClickable(false);
         mFAB.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.gray_20)));
         mFAB.setTranslationY(-getResources().getDimension(R.dimen.floating_action_button_size_half));
-        mFAB.setOnClickListener(v -> {
-           //调整到播放界面
-        });
+        mFAB.setOnClickListener(v -> VideoPlayerActivity.launch(VideoDetailsActivity.this,
+                mVideoDetailsInfo.getPages().get(0).getCid(), mVideoDetailsInfo.getTitle()));
         mAppBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) ->
             setViewsTranslation(verticalOffset));
 

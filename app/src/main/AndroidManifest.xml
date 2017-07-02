@@ -28,7 +28,8 @@
         <activity android:name=".ui.activity.SubjectBookListActivity" />
         <activity android:name=".ui.activity.SubjectBookListDetailActivity" />
         <activity android:name=".ui.activity.RegionTypeDetailsActivity" />
-        <activity android:name=".ui.activity.VideoDetailsActivity"></activity>
+        <activity android:name=".ui.activity.VideoDetailsActivity" />
+        <activity android:name=".ui.activity.VideoPlayerActivity"></activity>
     </application>
 
 </manifest>
