@@ -77,4 +77,13 @@
     <color name="focus_bg_color">@android:color/transparent</color>
     <color name="white">#FFFFFF</color>
     <color name="line_bg">#e6e6e6</color>
+
+    <color name="grey_300_96p">#F5E0E0E0</color>
+    <color name="white_50p">#80FFFFFF</color>
+    <color name="white_96p">#F5FFFFFF</color>
+    <color name="white_8p">#14FFFFFF</color>
+    <color name="grey">#9E9E9E</color>
+    <color name="red">#F44336</color>
+    <color name="red_30p">#4CF44336</color>
+    <color name="white_24p">#3DFFFFFF</color>
 </resources>

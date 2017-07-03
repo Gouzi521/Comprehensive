@@ -3,10 +3,12 @@ package com.ma.pingan.comprehensive.music;
 import android.app.Activity;
 import android.text.TextUtils;
 
+import com.ma.pingan.comprehensive.api.Api;
 import com.ma.pingan.comprehensive.utils.FileUtils;
 
 import java.io.File;
 
+import retrofit2.Retrofit;
 
 
 /**
@@ -93,6 +95,9 @@ public abstract class PlayOnlineMusic extends PlayMusic {
 //    }
 //
 //    private void downloadAlbum(String picUrl, String fileName) {
+//
+//
+//
 //        HttpClient.downloadFile(picUrl, FileUtils.getAlbumDir(), fileName, new HttpCallback<File>() {
 //            @Override
 //            public void onSuccess(File file) {

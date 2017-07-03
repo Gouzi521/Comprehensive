@@ -46,6 +46,9 @@
         <item name="overlapAnchor">false</item>
     </style>
 
+    <style name="AppTheme.Text" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/black_alpha_45</item>
+    </style>
 
     <style name="TagGroup">
         <item name="android:layout_width">match_parent</item>
