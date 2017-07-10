@@ -19,6 +19,7 @@ import com.ma.pingan.comprehensive.base.BaseFragment;
 import com.ma.pingan.comprehensive.bilientity.IconInfo;
 import com.ma.pingan.comprehensive.bilientity.RegionTypesInfo;
 import com.ma.pingan.comprehensive.dagger.component.AppComponent;
+import com.ma.pingan.comprehensive.ui.activity.FanjuDetailActivity;
 import com.ma.pingan.comprehensive.ui.activity.RegionTypeDetailsActivity;
 import com.ma.pingan.comprehensive.ui.adapter.HomeRegionItemAdapter;
 
@@ -160,7 +161,9 @@ public class VideoFragment extends BaseFragment implements BaseQuickAdapter.OnIt
             case 2:
                 //动画
                 RegionTypesInfo.DataBean mAnimation = regionTypes.get(2);
-               // RegionTypeDetailsActivity.launch(getActivity(), mAnimation);
+
+                FanjuDetailActivity.launch(getActivity(),mAnimation);
+              //  RegionTypeDetailsActivity.launch(getActivity(), mAnimation);
                 break;
 
             case 3:
@@ -219,7 +222,7 @@ public class VideoFragment extends BaseFragment implements BaseQuickAdapter.OnIt
             case 12:
                 //电影
                 RegionTypesInfo.DataBean mMovei = regionTypes.get(11);
-                RegionTypeDetailsActivity.launch(getActivity(), mMovei,itemNames[12]);
+               // RegionTypeDetailsActivity.launch(getActivity(), mMovei,itemNames[12]);
                 break;
 
             case 13:

@@ -35,9 +35,9 @@ public class PictureFragment extends Fragment implements OnPlayerEventListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.fragment_picture, container, false);
-        getPlayService().setOnPlayEventListener(this);
-        registerReceiver();
-        onChange(getPlayService().getPlayingMusic());
+//        getPlayService().setOnPlayEventListener(this);
+//        registerReceiver();
+//        onChange(getPlayService().getPlayingMusic());
 
         return rootView;
     }

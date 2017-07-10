@@ -30,8 +30,7 @@
         <activity android:name=".ui.activity.RegionTypeDetailsActivity" />
         <activity android:name=".ui.activity.VideoDetailsActivity" />
         <activity android:name=".ui.activity.VideoPlayerActivity" />
-        <activity android:name=".ui.activity.MusicActivity"></activity>
-
+        <activity android:name=".ui.activity.MusicActivity" />
 
         <service android:name=".music.service.PlayService" />
 
@@ -40,20 +39,19 @@
                 <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".music.receiver.RemoteControlReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </receiver>
-
         <receiver android:name=".music.receiver.StatusBarReceiver">
             <intent-filter>
                 <action android:name="me.wcy.music.STATUS_BAR_ACTIONS" />
             </intent-filter>
         </receiver>
 
+        <activity android:name=".ui.activity.FanjuDetailActivity" />
+        <activity android:name=".ui.activity.VLayoutActivity"></activity>
     </application>
-
 
 </manifest>
